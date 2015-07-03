@@ -1,9 +1,9 @@
 FROM debian:jessie
 
 RUN apt-get update && apt-get -y install wget build-essential libreadline-dev libncurses5-dev libpcre3-dev libssl-dev && apt-get -q -y clean
-RUN wget http://openresty.org/download/ngx_openresty-1.7.10.1.tar.gz \
-  && tar xvfz ngx_openresty-1.7.10.1.tar.gz \
-  && cd ngx_openresty-1.7.10.1 \
+RUN wget http://openresty.org/download/ngx_openresty-1.7.10.2.tar.gz \
+  && tar xvfz ngx_openresty-1.7.10.2.tar.gz \
+  && cd ngx_openresty-1.7.10.2 \
   && ./configure --with-luajit --with-http_gzip_static_module  --with-http_ssl_module \
   && make \
   && make install \
