@@ -1,0 +1,33 @@
+{
+  "id": "/APP_ID-router",
+  "cpus": 1,
+  "mem": 256,
+  "instances": 1,
+  "constraints": [["hostname", "UNIQUE"]],
+  "acceptedResourceRoles": ["slave_public"],
+  "container": {
+    "type": "DOCKER",
+    "docker": {
+      "image": "andrewjones/mesos-router",
+      "network": "BRIDGE",
+      "portMappings": [
+          {
+              "containerPort": 8080,
+              "hostPort": 80,
+              "protocol": "tcp"
+          }
+      ]
+    }
+  },
+  "env": {
+      "APP_ID": "APP_ID",
+  },
+  "healthChecks": [{
+      "protocol": "TCP",
+      "gracePeriodSeconds": 600,
+      "intervalSeconds": 30,
+      "portIndex": 0,
+      "timeoutSeconds": 10,
+      "maxConsecutiveFailures": 2
+  }]
+}
