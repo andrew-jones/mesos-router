@@ -11,7 +11,7 @@ resp = ngx.location.capture("/__mesos_dns/v1/services/_" .. subdomain .. "._tcp.
 backends = cjson.decode(resp.body)
 
 -- No backends, return 503 Service Unavailable
-if #backends < 1 then
+if ( #backends < 1 or backends[1].service == '' ) then
     ngx.exit(ngx.HTTP_SERVICE_UNAVAILABLE)
 end
 
